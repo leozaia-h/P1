@@ -1,0 +1,51 @@
+#include <stdio.h>
+#include <string.h>
+#include <math.h>
+#include <stdlib.h>
+
+double contar(double nota, char str[], double dinheiro)
+{
+  int i;
+  double acum = 0;
+  for (i = 1; i * nota <= dinheiro+0.00000000000001;i++)
+  {
+    acum += nota;
+  }
+  if(i != 1) printf("%d %s(s) de %.2lf\n", i-1, str, nota);
+  
+  return acum;
+}
+
+int main()
+{
+    double dinheiro;
+    int i;
+  
+  	double notas[6] = {100, 50, 20, 10, 5, 2};
+  	double moedas[6] = {1, 0.50, 0.25, 0.10, 0.05, 0.01};
+  
+  	char n[5] = {'n','o','t','a', '\0'};
+  	char m[6] = {'m','o','e','d','a', '\0'};
+
+    scanf("%lf", &dinheiro);
+  
+  	for(i = 0; i < 6; i++)
+    {
+      dinheiro -= contar(notas[i], n, dinheiro);
+		}
+  
+  	for(i = 0; i < 6; i++)
+    {
+      dinheiro -= contar(moedas[i], m, dinheiro);
+		}
+
+    /*if(dinheiro > 100)
+    {
+        for (i = 0; i * 100 <= dinheiro;i++)
+        {
+        }
+            printf("%d nota(s) de 100.00\n", i-1);
+    }*/
+
+    return 0;
+}
